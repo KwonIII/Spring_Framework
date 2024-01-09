@@ -27,5 +27,5 @@ public class TwoDice {
 		out.println("</body>");
 		out.println("</html>");
 		
-	}
+	}  
 }

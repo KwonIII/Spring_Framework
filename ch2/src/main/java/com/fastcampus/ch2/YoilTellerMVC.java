@@ -1,46 +1,56 @@
 package com.fastcampus.ch2;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Calendar;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 //년월일을 입력하면 요일을 알려주는 프로그램
 @Controller
-public class YoilTellerMVC {//http://localhost/ch2/getYoilMVC?year=2021&month=10&day=1
+public class YoilTellerMVC {// http://localhost/ch2/getYoilMVC?year=2021&month=10&day=1
 
-		@RequestMapping("/getYoilMVC")
+	@RequestMapping("/getYoilMVC")
 //		public void main(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		public void main(int year, int month, int day, HttpServletResponse response) throws IOException {
-			
+	public ModelAndView main(int year, int month, int day) throws IOException {
+
+		//1. ModelAndView를 생성하고, 기본 뷰를 지정
+		ModelAndView mv = new ModelAndView();
+		// 1. 유효성 검사
+//		if (!isValid(year, month, day))
+//			return "yoilError";
+
+		// 2. 요일 계산
+		char yoil = getYoil(year, month, day);
 		
+		//3. 계산한 결과를 ModelAndView에 저장
+		mv.addObject("year",year);
+		mv.addObject("month",month);
+		mv.addObject("day",day);
+		mv.addObject("yoil",yoil);
 		
-		//2. 작업
+		//4. 결과를 보여줄 view를 지정
+		mv.setViewName("yoil"); //뷰으 이름을 지정
+		
+		return mv;
+		
+//		return "yoil"; // /WEB-INF/views/yoil.jsp
+
+	}
+
+	private boolean isValid(int year, int month, int day) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	private char getYoil(int year, int month, int day) {
 		Calendar cal = Calendar.getInstance();
-		cal.set(year, month-1,day);
-		
+		cal.set(year, month - 1, day);
+
 		int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
-		char yoil = " 일월화수목금토".charAt(dayOfWeek);
-		
-		//3. 출력
-//		response.setContentType("text/html");
-//		response.setCharacterEncoding("utf-8");
-//		PrintWriter out = response.getWriter();	//response객체에서 브라우저로의 출력 스트림을 얻는다.
-//		out.println("<html>");
-//		out.println("<head>");
-//		out.println("</head>");
-//		out.println("<body>");
-//		out.println(year + "년" + month + "월" + day + "일은 ");
-//		out.println(yoil + "요일입니다.");
-//		out.println("</body>");
-//		out.println("</html>");
-//		out.close();
-		
+		return " 일월화수목금토".charAt(dayOfWeek);
 	}
 
 }

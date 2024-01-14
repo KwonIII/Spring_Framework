@@ -5,16 +5,24 @@ import java.util.Calendar;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 //년월일을 입력하면 요일을 알려주는 프로그램
 @Controller
 public class YoilTellerMVC {// http://localhost/ch2/getYoilMVC?year=2021&month=10&day=1
-
+	@ExceptionHandler(Exception.class)
+	public String catcher(Exception ex) {
+		ex.printStackTrace();
+		return "yoilError";
+	}
 	@RequestMapping("/getYoilMVC")
 //		public void main(HttpServletRequest request, HttpServletResponse response) throws IOException {
-	public ModelAndView main(int year, int month, int day) throws IOException {
+	public ModelAndView main(@RequestParam(required=true)int year, 
+			@RequestParam(required=true)int month, 
+			@RequestParam(required=true)int day, Model model) throws IOException {
 
 		//1. ModelAndView를 생성하고, 기본 뷰를 지정
 		ModelAndView mv = new ModelAndView();

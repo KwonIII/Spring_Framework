@@ -19,7 +19,7 @@
 </c:if>	
 <c:if test="${param.msg != null}">
 	msg=${param.msg} 
-	msg=<c:out value="${param.msg}"/>
+	msg=<c:out value="${param.msg}"/> 
 </c:if>
 <br>
 <c:if test="${param.msg == null}">메시지가 없습니다.<br></c:if>

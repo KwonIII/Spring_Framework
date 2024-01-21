@@ -30,7 +30,7 @@ public class RegisterController {
 		//2. DB에 신규회원 정보를 저장
 		return "registerInfo";
 	}
-
+ 
 private boolean isValid(User user) {
 	return false;
 }

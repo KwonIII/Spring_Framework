@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page session = "false" %>
+<c:set var="loginOutLink" value="${sessionScope.id == null ? '/login/login' : '/login/logout'}"/>
+<c:set var="loginOut" value="${sessionScope.id == null ? 'Login' : 'Logout'}"/>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>    
 </head>
 <body>
-<div id="menu">
+<div id="menu"> 
 	<ul>
 	    <li id="logo">fastcampus</li>
 	    <li><a href="<c:url value='/'/>">Home</a></li>

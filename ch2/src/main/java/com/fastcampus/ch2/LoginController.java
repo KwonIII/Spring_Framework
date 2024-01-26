@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LoginController {
 	@GetMapping("/login")
 	public String loginForm(){
-		return "loginForm";
+		return "loginForm";   
 	}
 	
 	@GetMapping("/logout")
@@ -32,7 +32,7 @@ public class LoginController {
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
 		
 //		1.id와 pwd를 확인
-		if(!loginCheck(id,pwd)) {
+		if(!loginCheck(id,pwd)){  
 
 			//2-1일치하지 않으면, loginForm으로 이동
 

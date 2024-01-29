@@ -27,8 +27,8 @@ public class RegisterController {
 //		SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
 //		binder.registerCustomEditor(Date.class, new CustomDateEditor(df,false));
 		binder.registerCustomEditor(String[].class, "hobby", new StringArrayPropertyEditor("#"));
-//		binder.setValidator(new UserValidator());	//UserValidator를 WebDataBinder의 로컬 validatoor로 등록
-//		binder.addValidators(new UserValidator());	//UserValidator를 WebDataBinder의 로컬 validatoor로 등록
+//		binder.setValidator(new UserValidator());	//UserValidator를 WebDataBinder의 로컬 validator로 등록
+//		binder.addValidators(new UserValidator());	//UserValidator를 WebDataBinder의 로컬 validator로 등록
 		List<Validator> validatorList = binder.getValidators();
 		System.out.println("validatorList="+validatorList);
 	}
